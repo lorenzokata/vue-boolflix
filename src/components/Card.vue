@@ -1,11 +1,15 @@
 <template>
-  <div class="col p-2">
-    <div class="card p-1">
-    <!-- <img :src="film." alt="" class="card-img-top"> -->
-    <div class="card-title">{{ film.title }}</div>
-    <div class="card-subtitle mb-2 text-muted">{{ film.original_title }}</div>
-    <div class="list-group-item language">{{ film.original_language }}</div>
-    <div class="list-group-item vote">{{ film.vote_average }}</div>
+  <div class="col px-1">
+    <div class="card">
+      <img :src="getImgPath()" alt="" class="card-img-top position-relative">
+      <div class="card-body position-absolute">
+        <div class="card-title">{{ content.title || content.name }}</div>
+        <div class="card-subtitle mb-2 text-muted">{{ content.original_title || content.original_name }}</div>
+        <div class="list-group-item language">
+          <img :src="getFlagURL()" class="language-flag" :alt="content.original_language">
+        </div>
+        <div class="list-group-item vote">{{ content.vote_average }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -14,8 +18,25 @@
 export default {
   name: 'Card',
   props: {
-    film: Object
-  }
+    content: Object
+  },
+  data() {
+    return {
+      flagURL:'',
+    }
+  },
+  methods: {
+    getFlagURL(){
+      if (this.content.original_language == 'en') {
+        return this.flagURL=require('@/assets/en.png')
+      } else{
+        return this.flagURL='https://www.countryflags.io/' + this.content.original_language + '/shiny/64.png'
+      }
+    },
+    getImgPath(){
+      return (this.content.poster_path ? 'https://image.tmdb.org/t/p/w342' + this.content.poster_path : require('@/assets/notavailable.jpg'))
+    }
+  },
 }
 </script>
 
@@ -23,5 +44,9 @@ export default {
 <style scoped lang="scss">
 .card{
   border: 1px solid black;
+}
+
+.language-flag{
+  width: 20%;
 }
 </style>

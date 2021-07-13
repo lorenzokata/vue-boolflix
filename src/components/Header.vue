@@ -1,10 +1,10 @@
 <template>
-  <header>
+  <header class="bg-dark">
     <div class="container">
-      <div class="row bg-dark">
+      <div class="row">
         <div class="col d-flex justify-content-between align-items-center">
           <img src="@/assets/boolflix.png" alt="logo BoolFlix">
-          <input type="text" v-model="searchText" @keyup.enter="$emit('search', searchText)" name="search" id="search" placeholder="Inserisci il titolo del film" class="text-center text-white">
+          <input type="text" v-model="searchText" @keyup.enter="$emit('search', searchText)" name="search" id="search" placeholder="Inserisci il titolo del film" onfocus="this.placeholder = ''" class="text-center text-white">
         </div>
       </div>
     </div>
