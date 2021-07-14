@@ -7,7 +7,7 @@
         <div class="subtitle text-muted" v-if="content.original_title != content.title || content.original_name != content.name">{{ content.original_title || content.original_name }}</div>
         <div class="language mt-2 mb-2 d-flex align-items-center justify-content-around">
           <img :src="getFlagURL()" class="language-flag" :alt="content.original_language">
-          <div class="rating"><star-rating star-size="20" :read-only=true :rating="Math.round((content.vote_average)/2)" :show-rating="false"/></div>
+          <div class="rating"><star-rating :star-size=20 :read-only=true :rating="Math.round((content.vote_average)/2)" :show-rating="false"/></div>
         </div>
         <div class="overview" v-if="content.overview">{{content.overview}}</div>
         <div class="overview" v-else>Informazioni non disponibili</div>
