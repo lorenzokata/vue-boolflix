@@ -1,5 +1,5 @@
 <template>
-  <div class="col px-1">
+  <div class="col py-2 px-1">
     <div class="card">
       <img :src="getImgPath()" alt="" class="card-img-top position-relative">
       <div class="card-body position-absolute">
@@ -8,15 +8,21 @@
         <div class="list-group-item language">
           <img :src="getFlagURL()" class="language-flag" :alt="content.original_language">
         </div>
-        <div class="list-group-item vote">{{ content.vote_average }}</div>
+        <div class="list-group-item vote"><star-rating star-size="20" :read-only=true :rating="Math.round((content.vote_average)/2)" :show-rating="false"/></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import StarRating from 'vue-star-rating'
+
 export default {
   name: 'Card',
+  components:{
+    StarRating
+  },
   props: {
     content: Object
   },
@@ -49,4 +55,9 @@ export default {
 .language-flag{
   width: 20%;
 }
+
+list-group-item svg{
+  height: 10px;
+}
 </style>
+S
