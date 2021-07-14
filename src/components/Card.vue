@@ -3,12 +3,14 @@
     <div class="card">
       <img :src="getImgPath()" alt="" class="card-img-top position-relative">
       <div class="card-body position-absolute">
-        <div class="card-title">{{ content.title || content.name }}</div>
-        <div class="card-subtitle mb-2 text-muted">{{ content.original_title || content.original_name }}</div>
-        <div class="list-group-item language">
+        <div class="title">{{ content.title || content.name }}</div>
+        <div class="subtitle mb-2 text-muted" v-if="content.original_title != content.title || content.original_name != content.name">{{ content.original_title || content.original_name }}</div>
+        <div class="language mb-2 d-flex align-items-center justify-content-around">
           <img :src="getFlagURL()" class="language-flag" :alt="content.original_language">
+          <div class="rating"><star-rating star-size="20" :read-only=true :rating="Math.round((content.vote_average)/2)" :show-rating="false"/></div>
         </div>
-        <div class="list-group-item vote"><star-rating star-size="20" :read-only=true :rating="Math.round((content.vote_average)/2)" :show-rating="false"/></div>
+        <div class="overview" v-if="content.overview">{{content.overview}}</div>
+        <div class="overview" v-else>Informazioni non disponibili</div>
       </div>
     </div>
   </div>
@@ -48,16 +50,47 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.col{
+  height: 401.5px;
+}
+
 .card{
-  border: 1px solid black;
+  border: none;
+  height: 100%;
+}
+
+.card:hover .card-body{
+  display: block;
+}
+
+.card-img-top{
+  filter: brightness(1);
+  transition: all 0.5s ease;
+}
+
+.card:hover .card-img-top{
+  filter: brightness(0)	;
+}
+
+.card-body *{
+  color: white;
+  font-size: 14px;
+}
+
+.card-body{
+  background-color: black;
+  height: 100%;
+  display: none;
+  overflow: auto;
+}
+
+.card-body::-webkit-scrollbar {
+  display: none;
 }
 
 .language-flag{
   width: 20%;
 }
 
-list-group-item svg{
-  height: 10px;
-}
 </style>
 S
