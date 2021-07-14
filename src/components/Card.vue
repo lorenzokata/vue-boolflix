@@ -4,8 +4,8 @@
       <img :src="getImgPath()" alt="" class="card-img-top position-relative">
       <div class="card-body position-absolute">
         <div class="title">{{ content.title || content.name }}</div>
-        <div class="subtitle mb-2 text-muted" v-if="content.original_title != content.title || content.original_name != content.name">{{ content.original_title || content.original_name }}</div>
-        <div class="language mb-2 d-flex align-items-center justify-content-around">
+        <div class="subtitle text-muted" v-if="content.original_title != content.title || content.original_name != content.name">{{ content.original_title || content.original_name }}</div>
+        <div class="language mt-2 mb-2 d-flex align-items-center justify-content-around">
           <img :src="getFlagURL()" class="language-flag" :alt="content.original_language">
           <div class="rating"><star-rating star-size="20" :read-only=true :rating="Math.round((content.vote_average)/2)" :show-rating="false"/></div>
         </div>
@@ -69,7 +69,7 @@ export default {
 }
 
 .card:hover .card-img-top{
-  filter: brightness(0)	;
+  filter: brightness(20%)	;
 }
 
 .card-body *{
@@ -78,7 +78,7 @@ export default {
 }
 
 .card-body{
-  background-color: black;
+  background-color:none;
   height: 100%;
   display: none;
   overflow: auto;
@@ -86,6 +86,10 @@ export default {
 
 .card-body::-webkit-scrollbar {
   display: none;
+}
+
+.title{
+  font-size: 20px;
 }
 
 .language-flag{
