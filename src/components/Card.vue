@@ -65,7 +65,7 @@ export default {
 
 .card-img-top{
   filter: brightness(1);
-  transition: all 0.5s ease;
+  transition: all 0.3s ease-out;
 }
 
 .card:hover .card-img-top{
